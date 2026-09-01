@@ -1,0 +1,19 @@
+# Changes here will be overwritten by Copier
+_commit: 5.4.0
+_src_path: git@github.com:DiamondLightSource/python-copier-template.git
+author_email: niamh.dougan@diamond.ac.uk
+author_name: Niamh Dougan
+component_lifecycle: experimental
+component_owner: group:default/beamline-controls
+component_type: service
+description: FastCS support for APU Power Distribution Unit
+distribution_name: fastcs-apc-pdu
+docker: true
+docs_type: README
+git_platform: github.com
+github_org: DiamondLightSource
+package_name: fastcs_apc_pdu
+pypi: false
+repo_name: fastcs-apc-pdu
+strict_typing: true
+type_checker: pyright

@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: fastcs-apc-pdu
+  title: fastcs-apc-pdu
+  description: FastCS support for APU Power Distribution Unit
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group:default/beamline-controls

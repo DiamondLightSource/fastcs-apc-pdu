@@ -1,0 +1,27 @@
+import re
+
+_OUTLET_STATUS_RE = re.compile(r"^\s*[1-8]:\s*Outlet\s+[1-8]:\s*(On|Off)", re.MULTILINE)
+_LOAD_CURRENT_RE = re.compile(r"^\d+:\s*([\d.]+)\s*A", re.MULTILINE)
+
+
+class APCPDUProtocol:
+    def get_outlet_status(self, outlet: int) -> str:
+        """Get the status of a specific outlet."""
+        return f"olStatus {outlet}"
+
+    def read_outlet_status(self, response: str) -> bool:
+        """Parse the response to get the status of outlet."""
+        match = _OUTLET_STATUS_RE.search(response)
+        if match is None:
+            raise ValueError("Invalid response format: {response!r}")
+        return match.group(1) == "On"
+
+    def get_load_current(self) -> str:
+        return "phReading all current"
+
+    def read_load_current(self, response: str) -> float:
+        """Parse the response to get the load current."""
+        match = _LOAD_CURRENT_RE.search(response)
+        if match is None:
+            raise ValueError("Invalid response format: {response!r}")
+        return float(match.group(1))

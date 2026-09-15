@@ -1,0 +1,45 @@
+<display version="2.0.0">
+  <name>FastCS APC PDU</name>
+  <x>0</x>
+  <y use_class="true">0</y>
+  <width>388</width>
+  <height>55</height>
+  <grid_step_x>4</grid_step_x>
+  <grid_step_y>4</grid_step_y>
+  <widget type="label" version="2.0.0">
+    <name>Title</name>
+    <class>TITLE</class>
+    <text>FastCS APC PDU</text>
+    <x use_class="true">0</x>
+    <y use_class="true">0</y>
+    <width>388</width>
+    <height>25</height>
+    <font use_class="true">
+      <font name="Header 1" family="Liberation Sans" style="BOLD" size="22.0">
+      </font>
+    </font>
+    <foreground_color use_class="true">
+      <color name="Text" red="0" green="0" blue="0">
+      </color>
+    </foreground_color>
+    <transparent use_class="true">true</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label</name>
+    <text>Outlet 1 State</text>
+    <x>23</x>
+    <y>30</y>
+    <width>150</width>
+    <height>20</height>
+    <tooltip>State of outlet 1</tooltip>
+  </widget>
+  <widget type="led" version="2.0.0">
+    <name>LED</name>
+    <pv_name>BL21B-EA-PDU-01:Outlet1State</pv_name>
+    <x>270</x>
+    <y>30</y>
+    <width>20</width>
+    <height>20</height>
+  </widget>
+</display>

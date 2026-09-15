@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=schema.json
+controllers:
+  - id: BL21B-EA-PDU-01
+    type: fastcs_apc_pdu.APCPDUController
+
+transport:
+  - epicsca: {}
+    gui:
+      title: "FastCS APC PDU"
+      output_dir: ./opi/

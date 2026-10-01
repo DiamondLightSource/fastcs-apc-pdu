@@ -27,19 +27,37 @@ async def test():
 
     protocol = APCPDUProtocol()
 
-    response, parsed = await connection.send_command(
-        protocol.get_outlet_status(1), parser=protocol.parse_outlet_status
-    )
-    print("get_outlet_status(1) response:")
+    # Test turning on outlet 1, checking status, turning off outlet 1,
+    # checking status again, and checking load current
+
+    response, _ = await connection.send_command(protocol.command_outlet_on(1))
+    print("command_outlet_on(1) response:")
     print(response)
-    print(f"get_outlet_status(1) parsed: {parsed}")
 
     response, parsed = await connection.send_command(
-        protocol.get_load_current(), parser=protocol.parse_load_current
+        protocol.command_outlet_status(1), parser=protocol.parse_outlet_status
     )
-    print("get_load_current() response:")
+    print("command_outlet_status(1) response:")
     print(response)
-    print(f"get_load_current() parsed: {parsed}")
+    print(f"command_outlet_status(1) parsed: {parsed}")
+
+    response, _ = await connection.send_command(protocol.command_outlet_off(1))
+    print("command_outlet_off(1) response:")
+    print(response)
+
+    response, parsed = await connection.send_command(
+        protocol.command_outlet_status(1), parser=protocol.parse_outlet_status
+    )
+    print("command_outlet_status(1) response:")
+    print(response)
+    print(f"command_outlet_status(1) parsed: {parsed}")
+
+    response, parsed = await connection.send_command(
+        protocol.command_load_current(), parser=protocol.parse_load_current
+    )
+    print("command_load_current() response:")
+    print(response)
+    print(f"command_load_current() parsed: {parsed}")
 
 
 asyncio.run(test())

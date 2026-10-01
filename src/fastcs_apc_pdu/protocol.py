@@ -5,15 +5,15 @@ _LOAD_CURRENT_RE = re.compile(r"^\d+:\s*([\d.]+)\s*A", re.MULTILINE)
 
 
 class APCPDUProtocol:
-    def get_outlet_on(self, outlet: int) -> str:
+    def command_outlet_on(self, outlet: int) -> str:
         """Command to turn on an outlet."""
         return f"olOn {outlet}"
 
-    def get_outlet_off(self, outlet: int) -> str:
+    def command_outlet_off(self, outlet: int) -> str:
         """Command to turn off an outlet."""
         return f"olOff {outlet}"
 
-    def get_outlet_status(self, outlet: int) -> str:
+    def command_outlet_status(self, outlet: int) -> str:
         """Command to get the status of a specific outlet."""
         return f"olStatus {outlet}"
 
@@ -24,7 +24,7 @@ class APCPDUProtocol:
             raise ValueError("Invalid response format: {response!r}")
         return match.group(1)
 
-    def get_load_current(self) -> str:
+    def command_load_current(self) -> str:
         """Command to get the load current."""
         return "phReading all current"
 

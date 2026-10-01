@@ -90,7 +90,7 @@ class APCPDUConnection:
             # Eg, IAC WILL ECHO = b"\xFF\xFB\x01"
             option = (await self._reader.readexactly(1))[0]
 
-            # If device says it WILL do something, we say DONT do it.
+            # If device says it WILL do something, eg, IAC WILL ECHO, we say DONT do it.
             if command == WILL:
                 self._writer.write(bytes([IAC, DONT, option]))
                 await self._writer.drain()

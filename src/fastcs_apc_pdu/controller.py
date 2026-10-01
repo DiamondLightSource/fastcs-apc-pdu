@@ -7,8 +7,8 @@ from fastcs_apc_pdu.connection import APCPDUConnection
 from fastcs_apc_pdu.protocol import APCPDUProtocol
 
 # Hardcoded for testing only - replace with real config/env vars later.
-HOST = "BL21B-EA-TSERV-01"
-PORT = 4015
+HOST = "172.23.91.223"
+PORT = 23
 USERNAME = "apc"
 PASSWORD = "b21staff"
 OUTLET = 1

@@ -7,6 +7,7 @@
 import asyncio
 
 from fastcs_apc_pdu.connection import APCPDUConnection
+from fastcs_apc_pdu.protocol import APCPDUProtocol
 
 
 async def test():
@@ -21,7 +22,13 @@ async def test():
     print("Connected and logged in")
 
     response = await connection.send_query("?")
-    print("APC response:")
+    print("? response:")
+    print(response)
+
+    protocol = APCPDUProtocol()
+
+    response = await connection.send_query(protocol.get_outlet_status(1))
+    print("get_outlet_status(1) response:")
     print(response)
 
 

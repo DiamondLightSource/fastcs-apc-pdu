@@ -21,13 +21,13 @@ async def test():
     await connection.connect()
     print("Connected and logged in")
 
-    response = await connection.send_query("?")
+    response = await connection.send_command("?")
     print("? response:")
     print(response)
 
     protocol = APCPDUProtocol()
 
-    response = await connection.send_query(protocol.get_outlet_status(1))
+    response = await connection.send_command(protocol.get_outlet_status(1))
     print("get_outlet_status(1) response:")
     print(response)
 

@@ -25,7 +25,7 @@ class OutletStatusIORef(AttributeIORef):
 
 class OutletStatusIO(AttributeIO[bool, OutletStatusIORef]):
     async def update(self, attr: AttrR[bool, OutletStatusIORef]) -> None:
-        response = await attr.io_ref.connection.send_query(
+        response = await attr.io_ref.connection.send_command(
             protocol.get_outlet_status(attr.io_ref.outlet)
         )
         await attr.update(protocol.read_outlet_status(response))

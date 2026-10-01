@@ -42,9 +42,20 @@ class APCPDUConnection:
     Sends a command to the APC PDU and returns the response as a string.
     """
 
-    async def send_query(self, command: str) -> str:
+    async def send_command(self, command: str, check_success: bool = True) -> str:
         await self._write_line(command)
-        return await self._read_until(PROMPT)
+        response = await self._read_until(PROMPT)
+        if check_success:
+            self.check_success(response)
+        return response
+
+    """
+    Checks if the response indicates success. Raises ValueError if not.
+    """
+
+    def check_success(self, response: str) -> None:
+        if "E000: Success" not in response:
+            raise ValueError(f"APC command failed: {response!r}")
 
     """
     Writes a line + carriage return, newline to the connection.

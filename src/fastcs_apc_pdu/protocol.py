@@ -17,7 +17,7 @@ class APCPDUProtocol:
         """Command to get the status of a specific outlet."""
         return f"olStatus {outlet}"
 
-    def read_outlet_status(self, response: str) -> bool:
+    def parse_outlet_status(self, response: str) -> bool:
         """Parse the response to get the status of outlet."""
         match = _OUTLET_STATUS_RE.search(response)
         if match is None:
@@ -28,7 +28,7 @@ class APCPDUProtocol:
         """Command to get the load current."""
         return "phReading all current"
 
-    def read_load_current(self, response: str) -> float:
+    def parse_load_current(self, response: str) -> float:
         """Parse the response to get the load current."""
         match = _LOAD_CURRENT_RE.search(response)
         if match is None:

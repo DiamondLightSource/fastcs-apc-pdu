@@ -28,7 +28,7 @@ class OutletStatusIO(AttributeIO[bool, OutletStatusIORef]):
         response = await attr.io_ref.connection.send_command(
             protocol.get_outlet_status(attr.io_ref.outlet)
         )
-        await attr.update(protocol.read_outlet_status(response))
+        await attr.update(protocol.parse_outlet_status(response))
 
 
 class APCPDUController(Controller):

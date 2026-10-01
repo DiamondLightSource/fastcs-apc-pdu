@@ -27,30 +27,38 @@ async def test():
 
     protocol = APCPDUProtocol()
 
-    # Test turning on outlet 1, checking status, turning off outlet 1,
-    # checking status again, and checking load current
-
-    response, _ = await connection.send_command(protocol.command_outlet_on(1))
-    print("command_outlet_on(1) response:")
-    print(response)
-
     response, parsed = await connection.send_command(
-        protocol.command_outlet_status(1), parser=protocol.parse_outlet_status
+        protocol.command_outlet_status("1"), parser=protocol.parse_outlet_status
     )
-    print("command_outlet_status(1) response:")
+    print("command_outlet_status('1') response:")
     print(response)
-    print(f"command_outlet_status(1) parsed: {parsed}")
+    print(f"command_outlet_status('1') parsed: {parsed}")
 
-    response, _ = await connection.send_command(protocol.command_outlet_off(1))
-    print("command_outlet_off(1) response:")
+    response, _ = await connection.send_command(protocol.command_outlet_on("1"))
+    print("command_outlet_on('1') response:")
     print(response)
 
-    response, parsed = await connection.send_command(
-        protocol.command_outlet_status(1), parser=protocol.parse_outlet_status
+    response, _ = await connection.send_command(protocol.command_outlet_off("1"))
+    print("command_outlet_off('1') response:")
+    print(response)
+
+    response, _ = await connection.send_command(protocol.command_outlet_reboot("1"))
+    print("command_outlet_reboot('1') response:")
+    print(response)
+
+    response, _ = await connection.send_command(protocol.command_outlet_delay_on("1"))
+    print("command_outlet_delay_on('1') response:")
+    print(response)
+
+    response, _ = await connection.send_command(protocol.command_outlet_delay_off("1"))
+    print("command_outlet_delay_off('1') response:")
+    print(response)
+
+    response, _ = await connection.send_command(
+        protocol.command_outlet_delay_reboot("1")
     )
-    print("command_outlet_status(1) response:")
+    print("command_outlet_delay_reboot('1') response:")
     print(response)
-    print(f"command_outlet_status(1) parsed: {parsed}")
 
     response, parsed = await connection.send_command(
         protocol.command_load_current(), parser=protocol.parse_load_current

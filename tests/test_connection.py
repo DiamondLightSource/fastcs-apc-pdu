@@ -21,7 +21,7 @@ async def test():
     await connection.connect()
     print("Connected and logged in")
 
-    response = await connection.send_command("?")
+    response = await connection.send_command("?", check_success=False)
     print("? response:")
     print(response)
 

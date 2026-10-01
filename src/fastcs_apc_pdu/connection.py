@@ -1,4 +1,7 @@
 import asyncio
+from collections.abc import Callable
+
+from annotated_types import T
 
 # Prompts
 USERNAME_PROMPT: bytes = b"User Name"
@@ -39,15 +42,28 @@ class APCPDUConnection:
         await self._read_until(PROMPT)
 
     """
-    Sends a command to the APC PDU and returns the response as a string.
+    Sends a command to the APC PDU and returns the response and
+    parsed result as a tuple.
     """
 
-    async def send_command(self, command: str, check_success: bool = True) -> str:
+    async def send_command(
+        self,
+        command: str,
+        check_success: bool = True,
+        parser: Callable[[str], T] | None = None,
+    ) -> tuple[str, T | None]:
         await self._write_line(command)
         response = await self._read_until(PROMPT)
+
         if check_success:
             self.check_success(response)
-        return response
+
+        if parser:
+            parsed = parser(response)
+        else:
+            parsed = None
+
+        return response, parsed
 
     """
     Checks if the response indicates success. Raises ValueError if not.

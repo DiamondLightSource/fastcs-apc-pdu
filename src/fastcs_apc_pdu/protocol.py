@@ -17,12 +17,12 @@ class APCPDUProtocol:
         """Command to get the status of a specific outlet."""
         return f"olStatus {outlet}"
 
-    def parse_outlet_status(self, response: str) -> bool:
+    def parse_outlet_status(self, response: str) -> str:
         """Parse the response to get the status of outlet."""
         match = _OUTLET_STATUS_RE.search(response)
         if match is None:
             raise ValueError("Invalid response format: {response!r}")
-        return match.group(1) == "On"
+        return match.group(1)
 
     def get_load_current(self) -> str:
         """Command to get the load current."""

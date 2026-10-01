@@ -31,13 +31,13 @@ async def test():
     print("get_outlet_status(1) response:")
     print(response)
     parsed = protocol.parse_outlet_status(response)
-    print(f"Parsed outlet status: {parsed}")
+    print(f"get_outlet_status(1) parsed: {parsed}")
 
     response = await connection.send_command(protocol.get_load_current())
     print("get_load_current() response:")
     print(response)
     parsed = protocol.parse_load_current(response)
-    print(f"Parsed load current: {parsed}")
+    print(f"get_load_current() parsed: {parsed}")
 
 
 asyncio.run(test())
